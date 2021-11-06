@@ -1,6 +1,12 @@
+#include "omp.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-int main(){
-    printf("Hola mundo \n");
-    return 0;
+void main(){
+    #pragma omp parallel //inicio región paralela
+    {
+        int ID = omp_get_thread_num();
+        printf("hello( %d)", ID);
+        printf(" world( %d)\n", ID);
+    } //fin región paralela
 }
