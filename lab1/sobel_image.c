@@ -2,15 +2,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image/stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image/stb_image_write.h"
 
 int main(int argc, char** argv) {
+    FILE *fp;
+    clock_t begin = clock();
+    double time_spent = 0.0;    
     int width, height, channels;
     if(argc != 3){
-        printf("usage: ./sobel_image input_image output_image");
+        printf("beware of usage: ./sobel_image input_image output_image \n");
         return 0;
 
     }
@@ -64,4 +68,19 @@ int main(int argc, char** argv) {
     stbi_image_free(img);
     free(gray_img);
     free(sobel_image);
+
+    clock_t end = clock();
+ 
+    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
+
+    char message[80], time[80];
+    snprintf(time, 80, "%f", time_spent);
+    strcpy(message, "The execution time for ");
+    strcat(message, input);
+    strcat(message, " was: ");
+    strcat(message, time);
+
+    fp = fopen("times.txt", "w");      
+    fputs(message, fp);
+    fclose(fp);
 }
