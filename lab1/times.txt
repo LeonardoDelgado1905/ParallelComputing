@@ -1,3 +1,2 @@
-The execution time for perro.jpg was: 9.651812 
-The execution time for perro.jpg was: 9.944134 
-The execution time for perro.jpg was: 9.741549 
+The execution time for 4k.jpg (with resolution: 3840x2160) was: 1.265289 
+The execution time for ./4k/ciudad_4k.jpg (with resolution: 3840x2160) was: 1.196856 

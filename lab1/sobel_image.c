@@ -8,6 +8,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image/stb_image_write.h"
 
+
 int main(int argc, char** argv) {
     /*Declaración de variables para medir el tiempo de procesamiento y escibirlo en
     un archivo de texto plano*/
@@ -85,11 +86,14 @@ int main(int argc, char** argv) {
     //Calculamos el tiempo de ejecuación del programa
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
-    char message[80], time[80];
+    char message[80], resolution[10], time[80];
     snprintf(time, 80, "%f", time_spent);
     strcpy(message, "The execution time for ");
     strcat(message, input);
-    strcat(message, " was: ");
+    strcat(message, " (with resolution: ");
+    snprintf(resolution, 10, "%dx%d", width, height);
+    strcat(message, resolution);
+    strcat(message, ") was: ");
     strcat(message, time);
     strcat(message, " \n");
 
