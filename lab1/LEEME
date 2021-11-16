@@ -1,0 +1,5 @@
+Primero Compilar: gcc sobel_image.c -o sobel_image -lm
+*Nota:No elvidar -lm
+
+Luego ejectura el indicando el nombre de la imágen de entrada y el nombre de salida
+./sobel_imgae.c entrada.jpg salida.jpg
