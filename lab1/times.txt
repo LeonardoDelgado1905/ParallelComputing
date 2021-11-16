@@ -1,1 +1,3 @@
-The execution time for 720p.jpg was: 0.286671
+The execution time for perro.jpg was: 9.651812 
+The execution time for perro.jpg was: 9.944134 
+The execution time for perro.jpg was: 9.741549 
