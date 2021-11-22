@@ -28,3 +28,5 @@ The execution time for ./4k/ciudad_4k.jpg (with resolution: 3840x2160) was: 1.11
 The execution time for ./720p/castle.jpg (with resolution: 1280x720) was: 0.155009 
 The execution time for ./1080p/dolphin.jpg (with resolution: 1920x1080) was: 0.410664 
 The execution time for ./4k/ciudad_4k.jpg (with resolution: 3840x2160) was: 1.272821 
+The execution time for ./1080p/dolphin.jpg (with resolution: 1920x1080) was: 0.408664 
+The execution time for ./1080p/dolphin.jpg (with resolution: 1920x1080) was: 0.408801 
