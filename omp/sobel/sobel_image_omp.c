@@ -12,7 +12,8 @@
 #define PAD 8
 
 int handleRow(unsigned char *p, unsigned char *pg, int num_fila, int width)
-{   int start, end;      
+{   
+    int start, end;      
     start = width * num_fila;
     end = start + width;
     for(int i = start; i < end; ++i){
@@ -54,7 +55,7 @@ int main(int argc, char** argv) {
     size_t gray_img_size = width * height * gray_channels;
     
     //Utilizamos memoria dinámica para el número de bits de la imagen en gris
-    unsigned char *gray_img = malloc(gray_img_size * PAD);
+    unsigned char *gray_img = malloc(gray_img_size);
     if(gray_img == NULL) {
         printf("Unable to allocate memory for the gray image.\n");
         exit(1);
@@ -64,8 +65,6 @@ int main(int argc, char** argv) {
     unsigned char *pg = gray_img;
     #pragma omp parallel for num_threads(thread_count) schedule(dynamic)
     for(int i = 0; i < (long) height; ++i) {
-        //printf("el filas: %d\n", i);
-        //*(pg + i) = (uint8_t)((*(p + (i * channels)) + *(p + (i * channels) + 1) + *(p + (i * channels) + 2))/3.0);
         handleRow(p, pg, i, width);
     }
 
@@ -73,7 +72,7 @@ int main(int argc, char** argv) {
     for(unsigned char *p = img, *pg = gray_img; p != img + img_size; p += channels, pg += gray_channels) {
         *pg = (uint8_t)((*p + *(p + 1) + *(p + 2))/3.0);
     }*/
-    stbi_write_png(output, width, height, gray_channels, gray_img, width * gray_channels);
+    //stbi_write_png(output, width, height, gray_channels, gray_img, width * gray_channels);
 
     //Utilizamos memoria dinámica para el número de bits de la imagen que tendrá el filtro aplicado
     unsigned char *sobel_image = malloc(gray_img_size);     
@@ -81,8 +80,11 @@ int main(int argc, char** argv) {
     int conv[] = {-1,-1,-1,-1,8,-1,-1,-1,-1};
     
     //Aplicamos el kernel a la imagen en tonalidades de gris
-    /*#pragma omp parallel for num_threads(thread_count)
-    for(unsigned char *p = gray_img + width + 1, *pg = sobel_image + width + 1; p != gray_img + gray_img_size - width - 1; p++, pg++) {
+    p = gray_img;
+    pg = sobel_image;
+    #pragma omp parallel for num_threads(thread_count) schedule(dynamic)
+    for(int i = width+1; i < gray_img_size - width - 1; i++) {
+        p = gray_img + i;
         size_t pos = p - gray_img;
         if(pos % width == 0 || pos % (width-1) == 0) { 
             *pg = 0;
@@ -91,16 +93,16 @@ int main(int argc, char** argv) {
         int new_val = *(p-width-1) * *(conv) + *(p-width) * *(conv+1) + *(p-width+1) * *(conv+0) + 
             *(p-1) * *(conv+3) + *p * *(conv+4) + *(p+1) * *(conv+5) + 
             *(p+width-1) * *(conv+6) + *(p+width) * *(conv+7) + *(p+width+1) * *(conv+8) ;
-        *pg = new_val < 0 ? 0 : new_val;
-        
-    }*/
+        *(pg + i) = new_val < 0 ? 0 : new_val;
+    }
+
 
     //Nombramos la imagen con el filtro aplicado con el nombre que el usuario ha ingresado
-    /*if (strstr(output, ".png") != NULL) {
+    if (strstr(output, ".png") != NULL) {
         stbi_write_png(output, width, height, gray_channels, sobel_image, width * gray_channels);
     }else{
         stbi_write_jpg(output, width, height, gray_channels, sobel_image, 100);
-    }*/
+    }
     
     //Liberamos las memorias dinámicas
     stbi_image_free(img);
@@ -112,16 +114,21 @@ int main(int argc, char** argv) {
     //Calculamos el tiempo de ejecuación del programa
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
-    char message[80], resolution[10], time[80];
-    snprintf(time, 80, "%f", time_spent);
+    char message[100], resolution[10], threads[17], time[80];
+    
     strcpy(message, "The execution time for ");
     strcat(message, input);
-    strcat(message, " (with resolution: ");
+    snprintf(threads, 17, " with %d threads ", thread_count);
+    strcat(message, threads);
+    strcat(message, " and resolution:");
     snprintf(resolution, 10, "%dx%d", width, height);
     strcat(message, resolution);
-    strcat(message, ") was: ");
+    snprintf(time, 24, "%f", time_spent);
+    strcat(message, " was: ");
     strcat(message, time);
     strcat(message, " \n");
+
+    printf("%s", time);
 
     //Escribimos el tiempo de ejecución del programa en un archivo de texto plano cuyo nombre será "times.txt"
     fp = fopen("times.txt", "a");      
