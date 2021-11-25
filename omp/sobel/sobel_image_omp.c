@@ -118,15 +118,14 @@ int main(int argc, char** argv) {
         handleSobel(ID, gray_img_size, gray_img, sobel_image, width, height);
     }
     
-    stbi_write_png(output, width, height, gray_channels, sobel_image, width * gray_channels); 
-    
+    stbi_write_png(output, width, height, gray_channels, sobel_image, width * gray_channels);    
+    double end = omp_get_wtime();
     
     //Liberamos las memorias dinámicas
     stbi_image_free(img);
     free(gray_img);
     free(sobel_image);
 
-    
     //Calculamos el tiempo de ejecuación del programa
     double time_spent = (double)(end- begin);   
     
