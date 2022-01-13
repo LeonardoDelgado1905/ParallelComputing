@@ -30,3 +30,4 @@ The execution time for ./1080p/dolphin.jpg (with resolution: 1920x1080) was: 0.4
 The execution time for ./4k/ciudad_4k.jpg (with resolution: 3840x2160) was: 1.272821 
 The execution time for ./1080p/dolphin.jpg (with resolution: 1920x1080) was: 0.408664 
 The execution time for ./1080p/dolphin.jpg (with resolution: 1920x1080) was: 0.408801 
+The execution time for ./8k/lionel-messi_7680x4320_xtrafondos.com.jpg (with resolution: 7680x4320) was: lution: 7680x4320) was:  

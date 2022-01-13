@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
     //Utilizamos memoria dinámica para el número de bits de la imagen que tendrá el filtro aplicado
     unsigned char *sobel_image = malloc(gray_img_size);     
     //Definimos el kernel del filtro
-    int conv[] = {-1,-1,-1,-1,9,-1,-1,-1,-1};
+    int conv[] = {-1,-1,-1,-1,8,-1,-1,-1,-1};
     //int conv[] = {1,-2,1,-2,5,-2,1,-2,1}; //sharpen
     //int conv[] = {1,1,1,1,-2,1,-1,-1,-1}; //Norte
     //int conv[] = {-1,1,1,-1,-2,1,-1,1,1}; // Este
