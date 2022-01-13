@@ -22,3 +22,27 @@ The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 6 threa
 The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 8 threads was: 2.242814 
 The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 12 threads was: 2.238065 
 The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 16 threads was: 2.212665 
+prueba 720
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 1 threads was: 0.306102 
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 2 threads was: 0.300214 
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 4 threads was: 0.293302 
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 6 threads was: 0.292602 
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 8 threads was: 0.293250 
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 12 threads was: 0.301771 
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 16 threads was: 0.293326 
+prueba 1080
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 1 threads was: 0.774664 
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 2 threads was: 0.766291 
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 4 threads was: 0.757861 
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 6 threads was: 0.759267 
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 8 threads was: 0.759835 
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 12 threads was: 0.771873 
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 16 threads was: 0.766433 
+prueba 4k
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 1 threads was: 2.382584 
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 2 threads was: 2.313121 
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 4 threads was: 2.258180 
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 6 threads was: 2.271600 
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 8 threads was: 2.203836 
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 12 threads was: 2.250072 
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 16 threads was: 2.221130 
