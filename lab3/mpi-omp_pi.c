@@ -6,28 +6,23 @@
 #include <omp.h>
 #include <math.h>
 
-#define SIZE 2e09
+#define ITERATIONS 2e09
 #define MAXTHREADS 32
 
-int gray_img(double *pi, int size, int ID, int numprocs)
+int calculatePi(double *pi, int ID, int numprocs)
 {   int start, end;
-    start = (size/numprocs) * ID;
-    end = (size/numprocs) * (ID + 1);
+    start = (ITERATIONS/numprocs) * ID;
+    end = (ITERATIONS/numprocs) + 1;
     int i = start;
 
-    if(height < (index + 1)*(height/totalThreads)){
-        end = height - 1;
-    }
-    int i = start;
-    do{       
-        for(int j = 0; j < width; j++){
-            unsigned char *dir_gray_pixel = gray_img + i*width + j;
-            unsigned char *dir_ch_pixel = img + 3*(i*width + j);
-            *dir_gray_pixel = (uint8_t)((*dir_ch_pixel + *(dir_ch_pixel + 1) + *(dir_ch_pixel + 2))/3.0);
-            //printf("i: %d, j: %d", i, j);
-        }
+    do{
+        *pi = *pi + (double)(4.0 / ((i*2)+1));
         i++;
-    }while(i <= end);
+        *pi = *pi - (double)(4.0 / ((i*2)+1));
+        i++;
+    }while(i < end);
+
+    return 0;
 }
 
 
