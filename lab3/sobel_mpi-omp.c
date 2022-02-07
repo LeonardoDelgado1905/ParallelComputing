@@ -73,8 +73,8 @@ int main(int argc, char *argv[])
 	int done = 0, n, processId, numprocs, I, rc, i;
   int width, height, channels;
 
-  char *input = "./4k/bicho.jpg";
-  char *output = "./4k/bicho_sobel.jpg";
+  char *input = "./720p/castle.jpg";
+  char *output = "./720p/castle_sobel.jpg";
 
   //Creamos variables para convertir la imagen de input a tonalidades de gris
   unsigned char *img;
