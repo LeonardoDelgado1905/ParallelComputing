@@ -55,9 +55,6 @@ int apply_sobel_filter(unsigned char *gray_img, unsigned char *sobel_img, int wi
                 for(int l = -1; l <= 1; ++l){
                     unsigned char *dir_n_pixel = dir_gray_pixel + k*width + l;
                     sum += *dir_n_pixel * conv[k+1][l+1];
-                    if(i == 233){
-                      printf("el valor de: %d es: %d", dir_n_pixel, *dir_n_pixel);
-                    }
                 }
             }
             sum = sum < 0 ? 0 : sum;
@@ -73,8 +70,12 @@ int main(int argc, char *argv[])
 	int done = 0, n, processId, numprocs, I, rc, i;
   int width, height, channels;
 
-  char *input = "./720p/castle.jpg";
-  char *output = "./720p/castle_sobel.jpg";
+  //char *input = "./720p/castle.jpg";
+  //char *output = "./720p/castle_sobel.jpg";
+
+  char* input = argv[1];
+  char* output = argv[2];
+  int threads_per_process = atoi(argv[3]);
 
   //Creamos variables para convertir la imagen de input a tonalidades de gris
   unsigned char *img;
@@ -95,7 +96,7 @@ int main(int argc, char *argv[])
         printf("Error in loading the image\n");
         exit(1);
     }
-    printf("Loaded image with a width of %dpx, a height of %dpx and %d channels\n", width, height, channels);
+    //printf("Loaded image with a width of %dpx, a height of %dpx and %d channels\n", width, height, channels);
   }
 
 
@@ -103,7 +104,7 @@ int main(int argc, char *argv[])
   MPI_Bcast(&height, 1, MPI_INT, 0, MPI_COMM_WORLD);
   MPI_Bcast(&channels, 1, MPI_INT, 0, MPI_COMM_WORLD);
   //MPI_Barrier(MPI_COMM_WORLD);
-  printf("Yo, el proceso %d tengo una imagen de %dpx, a height of %dpx and %d channels\n", processId, width, height, channels);
+  //printf("Yo, el proceso %d tengo una imagen de %dpx, a height of %dpx and %d channels\n", processId, width, height, channels);
   
   
   size_t img_size = width * height * channels;
@@ -131,7 +132,7 @@ int main(int argc, char *argv[])
   }    
 
   if (processId == 0){
-    printf("\nLaunching with %i processes", numprocs);
+    //printf("\nLaunching with %i processes", numprocs);
   }
   
   
@@ -147,7 +148,7 @@ int main(int argc, char *argv[])
   double end = omp_get_wtime();
   double time_spent = (double)(end- begin);  
   if(processId == 0){
-    printf("\nThe execution time for %s with resolution: %dx%d and %d processes was: %f \n", input, width, height, numprocs, time_spent);
+    printf("\nThe execution time for %s with resolution: %dx%d and %d processes and %d threads per process was: %f \n", input, width, height, numprocs, threads_per_process, time_spent);
   }
   //printf("termina el proceso: %d\n", processId);
   int data = gray_img_size/numprocs;
@@ -162,7 +163,7 @@ int main(int argc, char *argv[])
   }
   MPI_Bcast(total_gray, gray_img_size, MPI_UNSIGNED_CHAR, 0, MPI_COMM_WORLD);
   
-  #pragma omp parallel num_threads(4)
+  #pragma omp parallel num_threads(threads_per_process)
   {
     int threadId = omp_get_thread_num();
     int threadsTotal = omp_get_num_threads();

@@ -1,0 +1,24 @@
+
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 4 processes and 4 threads per process was: 0.000451 
+
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 4 processes and 4 threads per process was: 0.000799 
+
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 4 processes and 4 threads per process was: 0.003644 
+
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 4 processes and 2 threads per process was: 0.000857 
+
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 4 processes and 2 threads per process was: 0.001446 
+
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 4 processes and 2 threads per process was: 0.003709 
+
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 6 processes and 2 threads per process was: 0.000315 
+
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 6 processes and 2 threads per process was: 0.000801 
+
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 6 processes and 2 threads per process was: 0.002447 
+
+The execution time for ./720p/castle.jpg with resolution: 1280x720 and 6 processes and 4 threads per process was: 0.000397 
+
+The execution time for ./1080p/dolphin.jpg with resolution: 1920x1080 and 6 processes and 4 threads per process was: 0.000892 
+
+The execution time for ./4k/ciudad_4k.jpg with resolution: 3840x2160 and 6 processes and 4 threads per process was: 0.002271 
